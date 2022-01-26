@@ -6,7 +6,7 @@
       v-on:keyup.enter="focusFirstLocation()"
       ref="searchInput"
       :options="locations"
-      @click="() => { if (orderedLocations) { inputMenu?.show() } }"
+      @click="handleClickSearchBar"
     >
       <template v-slot:append>
         <q-btn :ripple="false" flat round icon="search" @click="focusFirstLocation()" />
@@ -88,12 +88,17 @@ export default defineComponent({
 
     watch(searchInputValue, fetchLocations)
 
+    const handleClickSearchBar = () => {
+      if (orderedLocations.value) { inputMenu.value?.show() }
+    }
+
     return {
       searchInputValue,
       locations,
       orderedLocations,
       focusLocation,
       focusFirstLocation,
+      handleClickSearchBar,
       showMenu,
       inputMenu
     }
