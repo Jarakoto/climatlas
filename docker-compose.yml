@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  db:
+    image: postgis/postgis:14-3.2
+    volumes:
+      - ./Database/dbdata:/var/lib/postgresql
+      - ./Database/scripts:/scripts
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 25433:5432
